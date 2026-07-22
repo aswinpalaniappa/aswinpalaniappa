@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aswin Palaniappa — IIoT Architect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fafaf8;--white:#ffffff;--ink:#111318;--dim:#5f6b7a;--soft:#8b95a3;--accent:#2547f4;--panel:#0e1420;--panel2:#151d2e;--pline:#26324a;--pamber:#e8a33d;--shadow:0 8px 32px rgba(17,19,24,.08),0 2px 8px rgba(17,19,24,.04)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden}
+.mono{font-family:'JetBrains Mono',monospace}
+::selection{background:var(--accent);color:#fff}
+.sec{max-width:1040px;margin:0 auto;padding:140px 32px;position:relative}
+.alt{background:var(--white)}
+.kicker{font-size:13px;letter-spacing:3px;color:var(--accent);font-weight:600;font-family:'JetBrains Mono',monospace;margin-bottom:20px}
+.big{font-size:clamp(32px,5.4vw,64px);font-weight:700;line-height:1.08;letter-spacing:-2px;color:var(--ink)}
+.body{font-size:18px;line-height:1.75;color:var(--dim);max-width:600px;margin-top:22px}
+.hl{color:var(--accent)}
+.caption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--soft);letter-spacing:1px;margin-top:16px}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+#progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0%;z-index:99}
+.hero{min-height:96vh;display:flex;flex-direction:column;justify-content:center}
+.identity{font-size:clamp(19px,2.6vw,26px);color:var(--accent);margin-top:22px;font-weight:600;min-height:1.4em}
+.cursor{animation:blink 1s step-end infinite;color:var(--accent)}
+@keyframes blink{50%{opacity:0}}
+.cta{display:inline-block;background:var(--ink);color:#fff;font-weight:600;font-size:16px;padding:17px 36px;border-radius:14px;text-decoration:none;transition:transform .25s,box-shadow .25s}
+.cta:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(17,19,24,.2)}
+.ghost{display:inline-block;color:var(--ink);background:var(--white);box-shadow:var(--shadow);font-size:16px;font-weight:500;padding:17px 34px;border-radius:14px;text-decoration:none;margin-left:14px;transition:transform .25s}
+.ghost:hover{transform:translateY(-2px)}
+.proofstrip{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.proof{background:var(--white);border-radius:20px;padding:36px 30px;box-shadow:var(--shadow);transition:transform .3s}
+.proof:hover{transform:translateY(-5px)}
+.pv{font-size:30px;font-weight:700;letter-spacing:-1px;font-variant-numeric:tabular-nums}
+.pl{font-size:14px;color:var(--dim);margin-top:10px;line-height:1.6}
+.panelwrap{background:var(--panel);border-radius:24px;margin-top:44px;overflow:hidden;box-shadow:0 20px 60px rgba(14,20,32,.35)}
+canvas.viz{width:100%;display:block}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;margin-top:44px}
+.card{background:var(--white);border-radius:20px;padding:32px;box-shadow:var(--shadow);text-align:center;transition:transform .3s}
+.card:hover{transform:translateY(-5px)}
+.metric{font-size:56px;font-weight:700;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-2px}
+.mlabel{font-size:14px;color:var(--dim);margin-top:12px}
+.principles{margin-top:52px}
+.principle{padding:36px 0;border-bottom:1px solid #e8e8e4;display:flex;gap:32px;align-items:baseline;transition:padding-left .3s}
+.principle:hover{padding-left:16px}
+.pnum{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);font-weight:500;flex-shrink:0}
+.ptext{font-size:clamp(20px,2.8vw,28px);font-weight:600;letter-spacing:-.5px;line-height:1.35}
+.ptext .sub{display:block;font-size:15px;font-weight:400;color:var(--soft);margin-top:8px;letter-spacing:0}
+.stations{position:relative;margin-top:52px}
+.station{display:flex;gap:28px;padding-bottom:46px;position:relative}
+.slight{width:16px;height:16px;border-radius:50%;background:var(--bg);border:2.5px solid #d5d7d2;flex-shrink:0;margin-top:6px;transition:all .6s;z-index:2}
+.station.lit .slight{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 6px rgba(37,71,244,.12)}
+.station.lit.top .slight{width:22px;height:22px;box-shadow:0 0 0 9px rgba(37,71,244,.15)}
+.strack{position:absolute;left:7px;top:16px;bottom:0;width:2px;background:#e2e3df}
+.station .info{opacity:.4;transition:opacity .6s}
+.station.lit .info{opacity:1}
+.year{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);font-weight:500;letter-spacing:1px}
+.role{font-size:20px;font-weight:600;letter-spacing:-.3px;margin:6px 0 6px}
+.station p{font-size:15px;color:var(--dim);line-height:1.65;max-width:540px}
+.term{background:var(--panel);border-radius:18px;padding:30px;font-family:'JetBrains Mono',monospace;font-size:14px;line-height:2.1;max-width:580px;margin:48px auto 0;text-align:left;color:#8fa0b8;box-shadow:0 20px 60px rgba(14,20,32,.3)}
+.term .g{color:#4ade80}.term .a{color:var(--pamber)}
+.footer{text-align:center}
+.footnote{margin-top:72px;font-size:13px;color:var(--soft);font-family:'JetBrains Mono',monospace}
+@media(max-width:640px){.sec{padding:96px 22px}.ghost{margin-left:0;margin-top:14px;display:block;text-align:center}.cta{display:block;text-align:center}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<section class="hero sec">
+  <div class="kicker reveal">ASWIN PALANIAPPA · IIOT ARCHITECT · ASSOCIATE VP</div>
+  <h1 class="big reveal d1" style="font-size:clamp(40px,7vw,84px)">I build software for machines<br>that are <span class="hl">not allowed to fail.</span></h1>
+  <div class="identity reveal d2"><span id="typeline"></span><span class="cursor">▍</span></div>
+  <p class="body reveal d2">8+ years connecting factory floors to the cloud. Zero production failures. Bengaluru, available worldwide.</p>
+  <div class="reveal d3" style="margin-top:40px">
+    <a class="cta" href="mailto:aswin123vpm@gmail.com">Talk to me</a>
+    <a class="ghost" href="https://linkedin.com/in/aswinpalaniappa" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0;padding-bottom:110px">
+  <div class="proofstrip reveal">
+    <div class="proof"><div class="pv">12 months</div><div class="pl">from Technical Architect to Associate VP. Promoted on delivery, not tenure.</div></div>
+    <div class="proof"><div class="pv">Zero failures</div><div class="pl">across every production deployment — including replacing a 20-year-old system live.</div></div>
+    <div class="proof"><div class="pv">Published</div><div class="pl">peer-reviewed researcher in industrial communication. Cited, not just certified.</div></div>
+  </div>
+</section>
+
+<section class="alt"><div class="sec">
+  <div class="kicker reveal">CHAPTER 01</div>
+  <h2 class="big reveal d1">It began inside devices with less memory than a single photo.</h2>
+  <p class="body reveal d2">Machines that run factories, where "mostly works" is a failure mode — and every byte is negotiated.</p>
+  <div class="panelwrap reveal d3"><canvas class="viz" id="chip" height="300"></canvas></div>
+  <div class="caption reveal d3">FIELD NOTES: freertos · vxworks · real-time linux · openpowerlink · s7-1500</div>
+</div></section>
+
+<section class="sec">
+  <div class="kicker reveal">CHAPTER 02</div>
+  <h2 class="big reveal d1">Factories around the world run on protocols I've published research on.</h2>
+  <p class="body reveal d2">Production systems listening to thousands of machine signals at once — without mishearing one.</p>
+  <div class="panelwrap reveal d3"><canvas class="viz" id="mesh" height="320"></canvas></div>
+  <div class="caption reveal d3">FIELD NOTES: opc ua client / server / pubsub · uadp over udp · tsn</div>
+</section>
+
+<section class="alt"><div class="sec">
+  <div class="kicker reveal">CHAPTER 03</div>
+  <h2 class="big reveal d1">I replaced the heart of a running factory. <span class="hl">Production never paused.</span></h2>
+  <p class="body reveal d2">A system had run for 20 years. Replacing it meant surgery on live infrastructure. The factory never noticed the operation happened.</p>
+  <div class="panelwrap reveal d2"><canvas class="viz" id="cutover" height="260"></canvas></div>
+  <div class="grid3">
+    <div class="card reveal"><div class="metric" data-count="0" data-prefix="~">~0</div><div class="mlabel">minutes of downtime</div></div>
+    <div class="card reveal d1"><div class="metric" data-count="0">0</div><div class="mlabel">failures after launch</div></div>
+    <div class="card reveal d2"><div class="metric" data-count="20" data-suffix="y">0</div><div class="mlabel">of legacy retired</div></div>
+  </div>
+</div></section>
+
+<section class="sec">
+  <div class="kicker reveal">CHAPTER 04</div>
+  <h2 class="big reveal d1">Decisions that took hours now happen in seconds.</h2>
+  <p class="body reveal d2">I built the pipeline that moves factory data to the cloud <span class="hl">faster than the machines produce it</span>. Now I'm teaching AI to read that data too.</p>
+  <div class="panelwrap reveal d3"><canvas class="viz" id="pipe" height="240"></canvas></div>
+  <div class="caption reveal d3">FIELD NOTES: apache kafka · fastapi · gcp · rest apis · llm integration</div>
+</section>
+
+<section class="alt"><div class="sec">
+  <div class="kicker reveal">HOW I OPERATE</div>
+  <div class="principles">
+    <div class="principle reveal"><div class="pnum">01</div><div class="ptext">"Mostly works" is a failure mode.<span class="sub">Machines don't accept excuses. Neither do I.</span></div></div>
+    <div class="principle reveal"><div class="pnum">02</div><div class="ptext">If it can't survive production, it isn't done.<span class="sub">Demos are easy. Twenty years of uptime is the standard I replace.</span></div></div>
+    <div class="principle reveal"><div class="pnum">03</div><div class="ptext">Speak silicon to machines. Speak outcomes to people.<span class="sub">The job of an architect is translation — both directions.</span></div></div>
+    <div class="principle reveal" style="border-bottom:none"><div class="pnum">04</div><div class="ptext">Output, not tenure.<span class="sub">Promotions are earned in production, not in meetings.</span></div></div>
+  </div>
+</div></section>
+
+<section class="sec">
+  <div class="kicker reveal">CHAPTER 05</div>
+  <h2 class="big reveal d1">Promoted to Associate VP in 12 months. Not by waiting.</h2>
+  <div class="stations">
+    <div class="strack"></div>
+    <div class="station top"><div class="slight"></div><div class="info"><div class="year">2025 → NOW</div><div class="role">Associate Vice President — Smartborn</div><p>Leading architecture, mentoring engineers, turning roadmaps into shipped outcomes.</p></div></div>
+    <div class="station"><div class="slight"></div><div class="info"><div class="year">2024</div><div class="role">Technical Architect — Smartborn</div><p>The year of the factory heart transplant, the real-time pipeline, and AI inside industry.</p></div></div>
+    <div class="station"><div class="slight"></div><div class="info"><div class="year">2021 → 2024</div><div class="role">Senior Software Engineer — Utthunga</div><p>Shipped protocol systems used daily by hundreds of industrial end users.</p></div></div>
+    <div class="station"><div class="slight"></div><div class="info"><div class="year">2019 → 2021</div><div class="role">Software Engineer — One Convergence</div><p>Squeezed industrial software into tiny embedded devices. Co-authored a whitepaper on it.</p></div></div>
+    <div class="station"><div class="slight"></div><div class="info"><div class="year">2017 → 2019</div><div class="role">Design Engineer — Kalycito</div><p>Where it began: making machines on a factory floor talk to each other.</p></div></div>
+  </div>
+</section>
+
+<section class="alt footer"><div class="sec">
+  <div class="kicker reveal">EPILOGUE</div>
+  <h2 class="big reveal d1">Some engineers build features.<br><span class="hl">I build the things that cannot break.</span></h2>
+  <div class="term reveal d2" id="termbox">
+    <div>$ ping aswin --from your-project</div>
+    <div id="termlines"></div>
+  </div>
+  <div class="reveal d3" style="margin-top:44px">
+    <a class="cta" href="mailto:aswin123vpm@gmail.com">aswin123vpm@gmail.com</a>
+    <a class="ghost" href="tel:+919566933607">+91 95669 33607</a>
+  </div>
+  <div class="footnote">© Aswin Palaniappa · Eye of the Storm awardee · Published researcher</div>
+</div></section>
+
+<script>
+const AC='#e8a33d',DIM='#3a4a66',BG='#151d2e',MONO="12px 'JetBrains Mono',monospace";
+function fit(c){const d=Math.min(devicePixelRatio||1,2),w=c.clientWidth,h=+c.getAttribute('height');c.width=w*d;c.height=h*d;const x=c.getContext('2d');x.scale(d,d);return[x,w,h];}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('progress').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';},{passive:true});
+const phrase='The person you call when failure is not an option.';let ti=0;const tEl=document.getElementById('typeline');
+setTimeout(function type(){if(ti<=phrase.length){tEl.textContent=phrase.slice(0,ti);ti++;setTimeout(type,38);}},900);
+function onSee(c,f){let s=false;new IntersectionObserver(e=>{if(e[0].isIntersecting&&!s){s=true;f();}},{threshold:.3}).observe(c);}
+
+const chip=document.getElementById('chip');
+onSee(chip,()=>{const[x,W,H]=fit(chip);const cx=W/2,cy=H/2,cw=Math.min(200,W*.3),ch=120;let t=0;
+const pins=[];for(let i=0;i<8;i++){pins.push({s:-1,o:i});pins.push({s:1,o:i});}
+(function fr(){x.clearRect(0,0,W,H);x.strokeStyle=DIM;x.lineWidth=1;
+pins.forEach((p,i)=>{const py=cy-ch/2+14+p.o*((ch-28)/7),x0=cx+p.s*cw/2;
+x.beginPath();x.moveTo(x0,py);x.lineTo(x0+p.s*70,py);x.stroke();
+const ph=(t*1.4+i*.6)%2;if(ph<1){x.beginPath();x.fillStyle=AC;x.arc(x0+p.s*70*ph,py,2.5,0,7);x.fill();}});
+x.fillStyle=BG;x.strokeStyle=AC;x.lineWidth=1.4;x.beginPath();x.roundRect(cx-cw/2,cy-ch/2,cw,ch,10);x.fill();x.stroke();
+x.fillStyle=AC;x.font="600 15px 'JetBrains Mono',monospace";x.textAlign='center';x.fillText('MCU',cx,cy-14);
+x.fillStyle='#9fb0c8';x.font=MONO;x.fillText('256 KB — every byte earned',cx,cy+8);
+const bw=cw*.7,fill=(Math.sin(t*.8)+1)/2*.5+.45;
+x.strokeStyle=DIM;x.strokeRect(cx-bw/2,cy+22,bw,8);x.fillStyle=AC;x.fillRect(cx-bw/2,cy+22,bw*fill,8);
+t+=.016;requestAnimationFrame(fr);})();});
+
+const mesh=document.getElementById('mesh');
+onSee(mesh,()=>{const[x,W,H]=fit(mesh);
+const N=[[.15,.3],[.35,.68],[.5,.25],[.68,.6],[.85,.32],[.28,.42],[.6,.8]].map(p=>({x:p[0]*W,y:p[1]*H}));
+const E=[[0,5],[5,1],[5,2],[2,3],[3,4],[1,3],[2,4],[1,6],[3,6]];
+const pk=E.map(e=>({e,ph:Math.random(),sp:.004+Math.random()*.006}));let t=0;
+(function fr(){x.clearRect(0,0,W,H);x.strokeStyle=DIM;x.globalAlpha=.6;x.lineWidth=1;
+E.forEach(e=>{x.beginPath();x.moveTo(N[e[0]].x,N[e[0]].y);x.lineTo(N[e[1]].x,N[e[1]].y);x.stroke();});
+x.globalAlpha=1;
+pk.forEach(p=>{p.ph+=p.sp;if(p.ph>1)p.ph=0;const a=N[p.e[0]],b=N[p.e[1]];
+x.beginPath();x.fillStyle=AC;x.arc(a.x+(b.x-a.x)*p.ph,a.y+(b.y-a.y)*p.ph,3,0,7);x.fill();});
+N.forEach((n,i)=>{x.beginPath();x.fillStyle=BG;x.strokeStyle=i===5?AC:'#5a6f92';x.lineWidth=1.4;
+x.arc(n.x,n.y,14,0,7);x.fill();x.stroke();
+if(i===5){x.beginPath();x.strokeStyle=AC;x.globalAlpha=.35+.3*Math.sin(t*3);x.arc(n.x,n.y,20+3*Math.sin(t*3),0,7);x.stroke();x.globalAlpha=1;}});
+x.fillStyle='#9fb0c8';x.font=MONO;x.textAlign='center';
+x.fillText('thousands of machines · one conversation · nothing misheard',W/2,H-16);
+t+=.016;requestAnimationFrame(fr);})();});
+
+const cut=document.getElementById('cutover');
+onSee(cut,()=>{const[x,W,H]=fit(cut);let prog=0,t=0;
+(function fr(){x.clearRect(0,0,W,H);const split=W*(.08+.84*Math.min(prog,1));
+x.save();x.beginPath();x.rect(0,0,split,H);x.clip();x.strokeStyle='#e05252';x.globalAlpha=.55;
+for(let i=0;i<3;i++){x.beginPath();x.lineWidth=1;const yb=H*.25+i*H*.2;
+for(let px=0;px<=W;px+=4){const j=(Math.random()-.5)*(8+6*Math.sin(t+i));x.lineTo(px,yb+Math.sin(px*.03+t*2+i)*8+j);}x.stroke();}
+x.globalAlpha=1;x.fillStyle='#ff8585';x.font=MONO;x.textAlign='left';x.fillText('THE OLD SYSTEM · 20 years · failing slowly',18,26);x.restore();
+x.save();x.beginPath();x.rect(split,0,W-split,H);x.clip();x.strokeStyle=AC;
+for(let i=0;i<3;i++){x.beginPath();x.lineWidth=1.4;const yb=H*.25+i*H*.2;
+for(let px=0;px<=W;px+=4){x.lineTo(px,yb+Math.sin(px*.025+t*1.5+i*2)*9);}x.stroke();}
+x.fillStyle=AC;x.font=MONO;x.textAlign='right';x.fillText('MINE · stable · silent · certain',W-18,26);x.restore();
+x.strokeStyle='#fff';x.lineWidth=2;x.beginPath();x.moveTo(split,0);x.lineTo(split,H);x.stroke();
+x.fillStyle='#9fb0c8';x.font=MONO;x.textAlign='center';x.fillText('the factory never noticed',W/2,H-14);
+if(prog<1)prog+=.004;t+=.02;requestAnimationFrame(fr);})();
+document.querySelectorAll('.metric').forEach(m=>{const tg=+m.dataset.count,pre=m.dataset.prefix||'',suf=m.dataset.suffix||'';let v=0;const st=Math.max(1,tg/40);
+(function tick(){v=Math.min(tg,v+st);m.textContent=pre+Math.round(v)+suf;if(v<tg)requestAnimationFrame(tick);})();});});
+
+const pipe=document.getElementById('pipe');
+onSee(pipe,()=>{const[x,W,H]=fit(pipe);const y=H*.45;
+const stops=[{x:.08,w:.16,l:'the machines',h:1},{x:.34,w:.13,l:'the wire',h:0},{x:.55,w:.12,l:'the stream',h:0},{x:.76,w:.18,l:'the decision',h:1}];
+const S=stops.map(s=>({x0:s.x*W,x1:(s.x+s.w)*W,l:s.l,h:s.h}));
+const P=[];for(let i=0;i<26;i++)P.push({u:Math.random(),sp:.0016+Math.random()*.0018});
+(function fr(){x.clearRect(0,0,W,H);x.strokeStyle=DIM;x.lineWidth=1;
+for(let i=0;i<S.length-1;i++){x.beginPath();x.moveTo(S[i].x1,y);x.lineTo(S[i+1].x0,y);x.stroke();}
+P.forEach(p=>{p.u+=p.sp*(1+p.u*1.8);if(p.u>1)p.u=0;
+const px=S[0].x1+(S[3].x0-S[0].x1)*p.u;let g=false;
+for(let i=1;i<3;i++)if(px>S[i].x0&&px<S[i].x1)g=true;
+if(!g){x.beginPath();x.fillStyle=AC;x.globalAlpha=.4+.6*p.u;x.arc(px,y,2.2+p.u*1.6,0,7);x.fill();x.globalAlpha=1;}});
+S.forEach(s=>{x.fillStyle=s.h?'#1d1508':BG;x.strokeStyle=s.h?AC:'#4a5f82';x.lineWidth=1.3;
+x.beginPath();x.roundRect(s.x0,y-24,s.x1-s.x0,48,10);x.fill();x.stroke();
+x.fillStyle=s.h?AC:'#9fb0c8';x.font=MONO;x.textAlign='center';x.fillText(s.l,(s.x0+s.x1)/2,y+4);});
+x.fillStyle='#7688a3';x.font="11px 'JetBrains Mono',monospace";x.textAlign='center';
+x.fillText('data arrives faster than it is produced',W/2,H-16);
+requestAnimationFrame(fr);})();});
+
+document.querySelectorAll('.station').forEach((s,i)=>{new IntersectionObserver(e=>{if(e[0].isIntersecting)setTimeout(()=>s.classList.add('lit'),i*120);},{threshold:.5}).observe(s);});
+(function(){const box=document.getElementById('termbox'),out=document.getElementById('termlines');let s=false;
+const L=['<span class="g">reply from bengaluru: 8+ years, zero production failures, ttl=∞</span>','<span class="g">status: building things that cannot break</span>','<span class="a">connection_established — awaiting your message ▊</span>'];
+new IntersectionObserver(e=>{if(e[0].isIntersecting&&!s){s=true;let i=0;
+(function n(){if(i<L.length){out.innerHTML+=L[i]+'<br>';i++;setTimeout(n,600);}})();}},{threshold:.5}).observe(box);})();
+</script>
+</body>
+</html>
